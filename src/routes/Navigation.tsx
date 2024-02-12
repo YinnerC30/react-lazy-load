@@ -7,22 +7,16 @@ import {
 } from 'react-router-dom';
 
 import logo from '../assets/react.svg';
-import { About, Home, Users } from '../components';
-import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/pages';
+import { routes } from './routes';
+import { Suspense } from 'react';
 
 function Root() {
   return (
-    // <Routes>
-    //   <Route path="/*" element={<Navigate to="/home" replace />} />
-    //   <Route path="/home" element={<Home />} />
-    //   <Route path="/about" element={<About />} />
-    //   <Route path="/users" element={<Users />} />
-    // </Routes>
     <Routes>
-      <Route path="/*" element={<Navigate to="/lazy1" replace />} />
-      <Route path="/lazy1" element={<LazyPage1 />} />
-      <Route path="/lazy2" element={<LazyPage2 />} />
-      <Route path="/lazy3" element={<LazyPage3 />} />
+      <Route path="/*" element={<Navigate to={routes[0].to} replace />} />
+      {routes.map(({ to, path, Component }) => (
+        <Route key={to} path={path} element={<Component />} />
+      ))}
     </Routes>
   );
 }
@@ -36,24 +30,22 @@ const router = createBrowserRouter([
 export const Navigation = () => {
   return (
     <>
-      <div className="main-layout">
-        <nav>
-          <img src={logo} alt="React Logo" />
-          <ul>
-            <li>
-              <a href="/lazy1">lazy1</a>
-            </li>
-            <li>
-              <a href="/lazy2">lazy2</a>
-            </li>
-            <li>
-              <a href="/lazy3">lazy3</a>
-            </li>
-          </ul>
-        </nav>
+      <Suspense fallback={<h1>Cargando...</h1>}>
+        <div className="main-layout">
+          <nav>
+            <img src={logo} alt="React Logo" />
+            <ul>
+              {routes.map(({ to, path, name }) => (
+                <li key={to}>
+                  <a href={path}>{name}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <RouterProvider router={router} />
-      </div>
+          <RouterProvider router={router} />
+        </div>
+      </Suspense>
     </>
   );
 };
