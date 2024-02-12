@@ -1,22 +1,30 @@
-import { createBrowserRouter, RouterProvider, NavLink } from 'react-router-dom';
-import logo from '../assets/react.svg';
+import {
+  Navigate,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+} from 'react-router-dom';
 
+import logo from '../assets/react.svg';
+import { About } from '../components/About';
+import { Home } from '../components/Home';
+import { Users } from '../components/Users';
+
+function Root() {
+  return (
+    <Routes>
+      <Route path="/*" element={<Navigate to="/home" replace />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/users" element={<Users />} />
+    </Routes>
+  );
+}
 const router = createBrowserRouter([
   {
-    path: '/*',
-    element: <h1>Home page</h1>,
-  },
-  {
-    path: 'home',
-    element: <h1>Home page</h1>,
-  },
-  {
-    path: 'about',
-    element: <h1>About page</h1>,
-  },
-  {
-    path: 'users',
-    element: <h1>Users page</h1>,
+    path: '*',
+    element: <Root />,
   },
 ]);
 
@@ -38,6 +46,7 @@ export const Navigation = () => {
             </li>
           </ul>
         </nav>
+
         <RouterProvider router={router} />
       </div>
     </>
