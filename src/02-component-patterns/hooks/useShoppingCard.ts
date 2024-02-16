@@ -14,32 +14,17 @@ export const useShoppingCard = () => {
     product: Product;
   }) => {
     setShoppingCart(shoppingCart => {
-      const productInCart: ProductInCart = shoppingCart[product.id] || {
-        ...product,
-        count: 0,
-      };
-
-      if (Math.max(productInCart.count + count, 0) > 0) {
-        productInCart.count += count;
-        return { ...shoppingCart, [product.id]: productInCart };
+      if (count == 0) {
+        const { [product.id]: toDelete, ...rest } = shoppingCart;
+        return {
+          ...rest,
+        };
       }
 
-      const { [product.id]: toDelete, ...rest } = shoppingCart;
       return {
-        ...rest,
+        ...shoppingCart,
+        [product.id]: { ...product, count },
       };
-
-      // if (count == 0) {
-      //   const { [product.id]: toDelete, ...rest } = shoppingCart;
-      //   return {
-      //     ...rest,
-      //   };
-      // }
-
-      // return {
-      //   ...shoppingCart,
-      //   [product.id]: { ...product, count },
-      // };
     });
   };
   return {
