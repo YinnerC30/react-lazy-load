@@ -9,6 +9,18 @@ function App() {
           <img src={logo} alt="React Logo" />
           <ul>
             <li>
+              <NavLink to="register">Register</NavLink>
+            </li>
+            <li>
+              <NavLink to="formik">Formik Basic</NavLink>
+            </li>
+            <li>
+              <NavLink to="formik-yup">Formik Yup</NavLink>
+            </li>
+            <li>
+              <NavLink to="formik-components">Formik Components</NavLink>
+            </li>
+            <li>
               <NavLink to="home">Home</NavLink>
             </li>
             <li>
