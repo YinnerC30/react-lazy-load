@@ -1,12 +1,14 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+
+import { MyCheckbox, MyTextInput, MySelect } from '../components';
 
 import '../styles/styles.css';
 
-export const FormikComponents = () => {
+export const FormikAbstraction = () => {
   return (
     <div>
-      <h1>Formik Components</h1>
+      <h1>Formik Abstraction</h1>
 
       <Formik
         initialValues={{
@@ -37,33 +39,34 @@ export const FormikComponents = () => {
       >
         {formik => (
           <Form>
-            <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" type="text" />
-            <ErrorMessage name="firstName" component="span" />
+            <MyTextInput
+              label="First Name"
+              name="firstName"
+              placeholder="Fernando"
+            />
 
-            <label htmlFor="lastName">Last Name</label>
-            <Field name="lastName" type="text" />
-            <ErrorMessage name="lastName" component="span" />
+            <MyTextInput
+              label="Last Name"
+              name="lastName"
+              placeholder="Herrera"
+            />
 
-            <label htmlFor="email">Email Address</label>
-            <Field name="email" type="text" />
-            <ErrorMessage name="email" component="span" />
+            <MyTextInput
+              label="Email Address"
+              name="email"
+              placeholder="jonh@google.com"
+              type="email"
+            />
 
-            <label htmlFor="jobType">Job Type</label>
-            <Field name="jobType" as="select">
+            <MySelect label="Job Type" name="jobType">
               <option value="">Pick something</option>
-              <option value="developer">Develper</option>
+              <option value="developer">Developer</option>
               <option value="designer">Designer</option>
               <option value="it-senior">IT Senior</option>
               <option value="it-jr">IT Jr.</option>
-            </Field>
-            <ErrorMessage name="jobType" component="span" />
+            </MySelect>
 
-            <label>
-              <Field name="terms" type="checkbox" />
-              Terms and conditions
-            </label>
-            <ErrorMessage name="terms" component="span" />
+            <MyCheckbox label="Terms & Conditions" name="terms" />
 
             <button type="submit">Submit</button>
           </Form>

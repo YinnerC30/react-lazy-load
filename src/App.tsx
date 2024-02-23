@@ -21,6 +21,9 @@ function App() {
               <NavLink to="formik-components">Formik Components</NavLink>
             </li>
             <li>
+              <NavLink to="formik-abstraction">Formik Abstraction</NavLink>
+            </li>
+            <li>
               <NavLink to="home">Home</NavLink>
             </li>
             <li>

@@ -9,6 +9,7 @@ import { RegisterPage } from '../03-forms/pages/RegisterPage.js';
 import { FormikYupPage } from '../03-forms/pages/FormikYupPage.js';
 import { FormikBasicPage } from '../03-forms/pages/FormikBasicPage.js';
 import { FormikComponents } from '../03-forms/pages/FormikComponents.js';
+import { FormikAbstraction } from '../03-forms/pages/FormikAbstraction.js';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: 'formik-components',
         element: <FormikComponents />,
+      },
+      {
+        path: 'formik-abstraction',
+        element: <FormikAbstraction />,
       },
       {
         path: 'home',
